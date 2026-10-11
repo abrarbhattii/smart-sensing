@@ -1,0 +1,18 @@
+.back-to-research {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s, gap 0.2s;
+}
+.back-to-research:hover {
+    color: var(--secondary-color);
+    gap: 10px;
+}
+.back-to-research i {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,75 @@
+/* Research Cards */
+.research-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.research-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.research-content {
+    padding: 20px;
+}
+
+.research-content h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 12px;
+}
+
+.research-content p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.research-tags {
+    margin-bottom: 15px;
+}
+
+.research-tags .tag {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 2px;
+}
+
+.research-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.research-actions .btn-sm {
+    padding: 6px 15px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .research-actions {
+        justify-content: center;
+    }
+}
+
+@media print {
+    .research-actions {
+        display: none !important;
+    }
+
+    .research-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

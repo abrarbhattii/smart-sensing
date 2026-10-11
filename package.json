@@ -1,0 +1,39 @@
+{
+  "name": "scd-smart-sensing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-snapshot.mjs && vite build",
+    "snapshot": "node scripts/build-snapshot.mjs",
+    "export-seed": "node scripts/export-seed-sql.mjs",
+    "lint": "oxlint",
+    "test": "vitest run",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@popperjs/core": "^2.11.8",
+    "@supabase/supabase-js": "^2.117.3",
+    "@tanstack/query-sync-storage-persister": "^5.104.1",
+    "@tanstack/react-query": "^5.104.1",
+    "@tanstack/react-query-persist-client": "^5.104.1",
+    "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.1",
+    "leaflet": "^1.9.4",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-hook-form": "^7.89.0",
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.18.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "jsdom": "^28.1.0",
+    "oxlint": "^1.71.0",
+    "vite": "^8.1.1",
+    "vitest": "^5.0.3"
+  }
+}

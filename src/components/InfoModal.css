@@ -1,0 +1,12 @@
+.modal-abstract .modal-body {
+    padding: 24px 28px;
+    line-height: 1.7;
+    color: #475569;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.modal-abstract .modal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-color);
+}

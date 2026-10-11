@@ -1,0 +1,67 @@
+/* Vision / mission cards */
+.ka-section .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.ka-section .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.ka-section .card-body {
+    padding: clamp(14px, 1.5vw, 18px) clamp(16px, 1.8vw, 20px);
+}
+
+/* Key Areas section background (network styles live in KeyAreasNetwork.css) */
+.ka-section {
+  background: radial-gradient(ellipse at 20% 50%, #eef6ff 0%, #f7f7fb 50%, #f0f7f0 100%);
+  padding: var(--section-padding-y) 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.ka-section .section-title {
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.ka-section .section-title p {
+  margin-bottom: 0;
+}
+
+.ka-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(44,82,130,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  .ka-section {
+    padding: var(--section-padding-y) 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .ka-section {
+    padding: var(--section-padding-y) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .ka-section {
+    padding: var(--section-padding-y) 0;
+  }
+}
+
+@media print {
+  .ka-section .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

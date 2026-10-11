@@ -1,0 +1,550 @@
+/* ── Team filters dropdown ── */
+.team-filters-dropdown-wrap {
+    position: relative;
+    display: inline-block;
+    margin-top: 1rem;
+}
+.team-filters-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.team-filters-dropdown-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+.team-filters-chevron {
+    font-size: 0.7em;
+    transition: transform 0.2s ease;
+}
+.team-filters-dropdown-wrap.open .team-filters-chevron {
+    transform: rotate(180deg);
+}
+.team-filters-dropdown-panel {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    min-width: 280px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+    padding: 1rem 1.25rem;
+    z-index: 1000;
+}
+.team-filters-dropdown-panel.show {
+    display: block;
+}
+.team-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+.team-filters-column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.team-filters-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+.team-filters-column .filter-btn {
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    margin: 0;
+    flex: none;
+    max-width: none;
+}
+@media (max-width: 479px) {
+    .team-filters-dropdown-wrap {
+        width: 100%;
+    }
+    .team-filters-dropdown-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .team-filters-dropdown-panel {
+        left: 0;
+        right: 0;
+        min-width: unset;
+        width: 100%;
+    }
+    .team-filters-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid black;
+    background: transparent;
+    color: black;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+    max-width: 140px;
+}
+
+.filter-btn.active {
+    background: forestgreen;
+    color: white;
+    border-color: forestgreen;
+}
+
+.filter-btn:hover {
+    background: forestgreen;
+    color: white;
+    border-color: forestgreen;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+    .filter-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        max-width: 110px;
+        flex: 1 1 auto;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 400px) {
+    .filter-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+        max-width: 100px;
+    }
+}
+
+/* ── HORIZONTAL PROFESSOR CARD (content left | photo right) ── */
+.prof-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(44, 82, 130, 0.08);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    position: relative;
+}
+
+.prof-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+    border-radius: 20px 0 0 20px;
+}
+
+.prof-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(44, 82, 130, 0.16);
+}
+
+.prof-card-body {
+    flex: 1;
+    padding: 28px 24px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.prof-card-body .prof-role {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.prof-card-body .prof-institution,
+.researcher-card-body .researcher-institution {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.prof-card-body h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    line-height: 1.3;
+    transition: color 0.2s;
+}
+
+.prof-card-body h4 a:hover {
+    color: var(--primary-color) !important;
+}
+
+.prof-card-body .prof-bio {
+    font-size: 0.92rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.prof-card-photo {
+    width: 145px;
+    min-width: 145px;
+    background: linear-gradient(135deg, #eef2f9, #e8f5ee);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.prof-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+}
+
+.prof-card:hover .prof-card-photo img {
+    transform: scale(1.05);
+}
+
+/* Equal-height rows: every card in a year matches the tallest one, so a longer role or bio
+   wrapping onto an extra line doesn't make a single card stand out. */
+.researcher-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 1.5rem;
+}
+
+.researcher-grid > .team-card {
+    display: flex;
+}
+
+@media (max-width: 767.98px) {
+    .researcher-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+}
+
+/* ── HORIZONTAL RESEARCHER CARD (content left | photo right) ── */
+.researcher-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    width: 100%;
+    min-height: 130px;
+    position: relative;
+}
+
+.researcher-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.researcher-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(56, 161, 105, 0.14);
+    background: #ffffff;
+}
+
+.researcher-card:hover::after {
+    opacity: 1;
+}
+
+.researcher-card-body {
+    flex: 1;
+    padding: 22px 20px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.researcher-card-body .researcher-role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.researcher-card-body h4 {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.researcher-card-body .researcher-bio {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.researcher-card-photo {
+    width: 145px;
+    min-width: 145px;
+    background: linear-gradient(135deg, #e8f5ee, #eef2f9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.researcher-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+}
+
+.researcher-card:hover .researcher-card-photo img {
+    transform: scale(1.06);
+}
+
+/* ── Section divider styling ── */
+.team-section-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e2e8f0 20%, #cbd5e0 50%, #e2e8f0 80%, transparent);
+    margin: 48px 0;
+}
+
+.team-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, #eef2f9, #e8f5ee);
+    border: 1px solid #dde6f5;
+    padding: 8px 18px;
+    border-radius: 30px;
+    margin-bottom: 28px;
+}
+
+/* ── Responsive: stack on mobile ── */
+@media (max-width: 640px) {
+    .prof-card,
+    .researcher-card {
+        flex-direction: column-reverse;
+    }
+
+    .prof-card-photo,
+    .researcher-card-photo {
+        width: 100%;
+        min-width: unset;
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .prof-card-photo img,
+    .researcher-card-photo img {
+        object-fit: contain;
+        object-position: top center;
+    }
+
+    .prof-card::before {
+        width: 100%;
+        height: 4px;
+        top: auto;
+        bottom: 0;
+        border-radius: 0 0 20px 20px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   VIEW BIO LINK & BIO MODAL (Team page)
+   ═══════════════════════════════════════════════════════════════════ */
+.view-bio-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 6px;
+  transition: color 0.2s;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.view-bio-link:hover {
+  color: var(--secondary-color);
+}
+#bioModal .modal-dialog {
+  max-height: calc(100vh - 2rem);
+  margin: 1rem auto;
+}
+#bioModal .modal-content {
+  max-height: calc(100vh - 2rem);
+}
+#bioModal .modal-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 8rem);
+}
+.bio-modal-content {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+.bio-modal-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.bio-modal-photo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef2f9, #e8f5ee);
+}
+.bio-modal-photo-wrap {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.bio-modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.bio-modal-info {
+  flex: 1;
+  min-width: 0;
+}
+.bio-modal-info h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+.bio-modal-role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+.bio-modal-institution {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+}
+.bio-modal-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #475569;
+}
+.bio-modal-links .btn { font-size: 0.8rem; }
+.bio-modal-detail { font-size: 0.88rem; color: #475569; border-top: 1px solid #e2e8f0; padding-top: 1rem; }
+.bio-detail-label { font-weight: 700; color: #334155; margin: 0.75rem 0 0.25rem; }
+.bio-detail-label:first-child { margin-top: 0; }
+.bio-detail-category { margin: 0.25rem 0; }
+.bio-detail-list { margin: 0 0 0 1rem; padding-left: 1rem; }
+.bio-detail-list li { margin-bottom: 0.35rem; }
+.bio-detail-list a { color: var(--primary-color); text-decoration: none; }
+.bio-detail-list a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  #bioModal .modal-dialog {
+    margin: 0.5rem auto;
+    max-width: calc(100vw - 1rem);
+  }
+  .bio-modal-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .bio-modal-photo {
+    width: 120px;
+    height: 120px;
+  }
+  .bio-modal-info h3 {
+    font-size: 1.15rem;
+  }
+  .bio-modal-bio,
+  .bio-modal-detail {
+    font-size: 0.88rem;
+  }
+}
+@media (max-width: 480px) {
+  #bioModal .modal-dialog {
+    margin: 0.25rem auto;
+    max-width: calc(100vw - 0.5rem);
+  }
+  .bio-modal-photo {
+    width: 100px;
+    height: 100px;
+  }
+  .bio-modal-info h3 {
+    font-size: 1.05rem;
+  }
+}

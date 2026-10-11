@@ -1,0 +1,215 @@
+.hub-entry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.hub-entry-card {
+    display: block;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.35rem 1.4rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+}
+
+.hub-entry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(44, 82, 130, 0.12);
+    color: inherit;
+}
+
+.hub-entry-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, rgba(44, 82, 130, 0.12), rgba(56, 161, 105, 0.12));
+    color: var(--primary-color);
+    margin-bottom: 0.85rem;
+}
+
+.hub-entry-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0 0 0.5rem;
+}
+
+.hub-entry-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.hub-fact-list {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+}
+
+.hub-fact-list li {
+    display: grid;
+    grid-template-columns: minmax(110px, 160px) 1fr;
+    gap: 0.75rem 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.hub-fact-list strong {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.hub-fact-list span {
+    color: #475569;
+}
+
+.hub-item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1rem;
+}
+
+.hub-item-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+}
+
+.hub-item-card h4 {
+    margin: 0 0 0.35rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--dark-color);
+}
+
+.hub-item-card__meta {
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.hub-item-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.55;
+}
+
+.hub-item-card a {
+    display: inline-block;
+    margin-top: 0.55rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.hub-item-card a:hover {
+    color: var(--secondary-color);
+}
+
+.hub-section-block {
+    margin-top: 2.5rem;
+}
+
+/* Card with text on the left and an image on the right; click opens its details. */
+.hub-media-card {
+    display: flex;
+    align-items: stretch;
+    min-height: 175px;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.hub-media-card:hover {
+    transform: translateY(-4px);
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(44, 82, 130, 0.12);
+}
+
+a.hub-media-card--link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.hub-media-card__body {
+    flex: 1;
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hub-media-card__body p:not(.hub-item-card__meta) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hub-media-card__open {
+    align-self: flex-start;
+    margin-top: 0.65rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.hub-media-card__open:hover,
+.hub-media-card__open:focus-visible {
+    color: var(--secondary-color);
+}
+
+.hub-media-card__photo {
+    width: 190px;
+    min-width: 190px;
+    background: linear-gradient(135deg, #eef2f9, #e8f5ee);
+    overflow: hidden;
+}
+
+.hub-media-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.hub-media-card:hover .hub-media-card__photo img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+    .hub-media-card {
+        flex-direction: column-reverse;
+    }
+
+    .hub-media-card__photo {
+        width: 100%;
+        min-width: unset;
+        height: 170px;
+    }
+
+    .hub-fact-list li {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+}

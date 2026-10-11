@@ -1,0 +1,227 @@
+/* Space for the fixed bottom event headline on Home only */
+.home-page {
+    padding-bottom: 1rem;
+}
+
+/* Hero — full-bleed research visual */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(78vh, 44rem);
+    padding: clamp(4.5rem, 10vh, 7rem) 0 clamp(3.5rem, 8vh, 5.5rem);
+    overflow: hidden;
+    color: #fff;
+}
+
+.hero__media {
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/home/Topo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.02);
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            105deg,
+            rgba(15, 23, 42, 0.78) 0%,
+            rgba(15, 23, 42, 0.55) 48%,
+            rgba(15, 23, 42, 0.35) 100%
+        ),
+        linear-gradient(to top, rgba(15, 23, 42, 0.45) 0%, transparent 42%);
+    pointer-events: none;
+}
+
+.hero__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.hero-content {
+    max-width: 38rem;
+}
+
+.hero__brand {
+    margin: 0 0 1rem;
+    font-size: clamp(2.15rem, 4.6vw, 3.65rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-wrap: balance;
+    animation: heroReveal 0.85s ease both;
+}
+
+.hero__lead {
+    margin: 0 0 1.75rem;
+    max-width: 32rem;
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: rgba(248, 250, 252, 0.92);
+    animation: heroReveal 0.85s ease 0.12s both;
+}
+
+.hero__cta {
+    animation: heroReveal 0.85s ease 0.24s both;
+}
+
+.hero__cta.btn-primary {
+    animation: heroReveal 0.85s ease 0.24s both;
+}
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(0.85rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__media {
+        transform: none;
+    }
+
+    .hero__brand,
+    .hero__lead,
+    .hero__cta,
+    .hero__cta.btn-primary {
+        animation: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero {
+        min-height: min(70vh, 36rem);
+        padding: 4rem 0 3.25rem;
+    }
+
+    #recent-work {
+        padding: var(--section-padding-y) 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        min-height: min(68vh, 32rem);
+        padding: 3.25rem 0 2.75rem;
+    }
+
+    .hero-content {
+        max-width: none;
+    }
+
+    .hero__lead {
+        margin-bottom: 1.4rem;
+    }
+
+    #recent-work {
+        padding: var(--section-padding-y) 0;
+    }
+}
+
+/* Team preview */
+.team-member {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.team-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    overflow: hidden;
+}
+
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.team-member h4 {
+    color: var(--dark-color);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.team-member .text-muted {
+    font-weight: 600;
+    color: var(--primary-color) !important;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 576px) {
+    .team-avatar {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+    }
+}
+
+/* Recent Work section (feature styles live in RecentWorkCarousel.css) */
+#recent-work {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: var(--section-padding-y) 0;
+  overflow: hidden;
+}
+
+/* Collaborators WebGIS Map section */
+.collaborators-section .section-title p {
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+/* Collaboration invite — vertically centered, left-aligned content */
+.collaborate-invite {
+  display: flex;
+  align-items: center;
+  min-height: 220px;
+  padding: 2.5rem 0;
+  background: linear-gradient(120deg, #edf2f7 0%, #f7fafc 55%, #eef6ff 100%);
+  border-top: 1px solid #e2e8f0;
+}
+.collaborate-invite__inner {
+  width: 100%;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.collaborate-invite__title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.collaborate-invite__text {
+  margin: 0 0 1.25rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.65;
+  color: #666;
+}
+@media (max-width: 576px) {
+  .collaborate-invite {
+    min-height: 180px;
+    padding: 2rem 0;
+  }
+}

@@ -1,0 +1,46 @@
+.footer {
+    background: var(--dark-color);
+    color: white;
+    padding: 50px 0 30px;
+}
+
+/* Clear the fixed home event headline so the rights line isn’t cramped against it */
+body:has(.event-headline) .footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+body:has(.event-headline) .footer .row:last-child p {
+    margin-bottom: 0;
+}
+
+.footer h5 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--accent-color);
+}
+
+.footer .social-links a {
+    color: #ccc;
+    transition: all 0.3s ease;
+}
+
+.footer .social-links a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+@media print {
+    .footer {
+        display: none !important;
+    }
+}

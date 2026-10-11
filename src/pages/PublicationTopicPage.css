@@ -1,0 +1,33 @@
+.publications-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+.publications-list {
+    flex: 1;
+    min-width: 0;
+    max-width: 900px;
+}
+.citations-chart {
+    flex-shrink: 0;
+    width: 340px;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 100px;
+}
+@media (max-width: 991px) {
+    .publications-layout {
+        flex-direction: column;
+    }
+    .citations-chart {
+        width: 100%;
+        max-width: 500px;
+        position: static;
+    }
+}
+.publications-list .publication-entry:last-child {
+    margin-bottom: 0;
+}

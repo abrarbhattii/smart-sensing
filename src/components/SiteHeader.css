@@ -1,0 +1,522 @@
+/* ═══════════════════════════════════════════════════════════════
+   FLOATING PILL NAVBAR (site-header)
+   Transparent at top → pill with blur on scroll
+   ═══════════════════════════════════════════════════════════════ */
+/* Body padding when using floating navbar */
+body:has(.site-header) {
+    padding-top: 72px;
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    padding: 0.75rem 1rem 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+}
+
+.site-header > * {
+    pointer-events: auto;
+}
+
+.site-header__pill {
+    position: relative;
+    width: 100%;
+    max-width: min(94vw, 78rem);
+    min-height: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0;
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, max-width 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
+
+/* Keep scrolled pill wide enough for 6 links + Explore (was 52rem — too narrow) */
+.site-header__pill--scrolled {
+    border-radius: 9999px;
+    max-width: min(80vw, 60rem);
+    padding: 0.45rem 1rem;
+    background: linear-gradient(135deg, rgba(44, 82, 130, 0.92), rgba(56, 161, 105, 0.92)) !important;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, max-width 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
+
+.site-header .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.site-header .nav-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-header .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: calc(2/1.5);
+    letter-spacing: 0.05em;
+    color: #1a202c !important;
+    text-decoration: none;
+    transition: opacity 0.2s ease, color 0.3s ease;
+}
+
+.site-header .nav__brand:hover {
+    opacity: 0.9;
+}
+
+/* Scrolled: white brand text */
+.site-header__pill--scrolled .nav__brand {
+    color: white !important;
+}
+
+.nav__brand-img {
+    border-radius: 50%;
+    background-color: white;
+}
+
+.site-header .nav-pill-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a202c;
+    text-decoration: none;
+    white-space: nowrap;
+    word-break: keep-all;
+    transition: background 0.2s ease, color 0.3s ease, border 0.2s ease;
+}
+
+.site-header .nav-pill-link:hover {
+    color: #2d3748;
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Scrolled: white nav links */
+.site-header__pill--scrolled .nav-pill-link {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.site-header__pill--scrolled .nav-pill-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.site-header .nav-pill-link.nav-active {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Scrolled: white active state */
+.site-header__pill--scrolled .nav-pill-link.nav-active {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Desktop flyout menus */
+.nav-item-has-flyout {
+    position: relative;
+}
+
+.nav-pill-link--parent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-flyout-chevron {
+    font-size: 0.65rem;
+    opacity: 0.75;
+    margin-left: 5px;
+}
+
+.site-header .nav-pill-link--cta,
+.site-header .nav__cta {
+    background: var(--accent-color);
+    color: #1a202c !important;
+    font-weight: 700;
+}
+
+.site-header .nav-pill-link--cta:hover,
+.site-header .nav__cta:hover {
+    background: #d97706;
+    color: #1a202c !important;
+}
+
+.site-header .nav__cta {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.site-header .nav__cta.nav-active {
+    box-shadow: 0 0 0 2px rgba(26, 32, 44, 0.45);
+}
+.site-header__pill--scrolled .nav__cta.nav-active {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.site-header .nav-pill-link--cta.nav-active {
+    background: var(--accent-color) !important;
+    color: #1a202c !important;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px rgba(26, 32, 44, 0.45);
+}
+.site-header__pill--scrolled .nav-pill-link--cta.nav-active {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.nav-flyout {
+    /* Flush to parent link; transparent padding bridges the gap and adds 5px L/R/B grace */
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 12.5rem;
+    margin: 0;
+    padding: 0.45rem 5px 5px;
+    list-style: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 200;
+}
+
+/* Visible panel inset so outer 5px (L/R/B) + top bridge stay hoverable but invisible */
+.nav-flyout::before {
+    content: '';
+    position: absolute;
+    top: 0.45rem;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.28);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Hover for pointer; :focus-visible only for keyboard (click focus must not pin open) */
+.nav-item-has-flyout:hover .nav-flyout,
+.nav-item-has-flyout:has(:focus-visible) .nav-flyout {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+/* Brief delay only on close so the cursor can cross into the submenu */
+.nav-item-has-flyout:not(:hover):not(:has(:focus-visible)) .nav-flyout {
+    transition-delay: 0.08s;
+}
+
+.nav-flyout-link {
+    position: relative;
+    z-index: 1;
+    display: block;
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a202c;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-flyout-link:hover,
+.nav-flyout-link:focus-visible {
+    background: rgba(44, 82, 130, 0.1);
+    color: var(--primary-color);
+}
+
+.site-header__pill--scrolled .nav-flyout::before {
+    background: rgba(44, 82, 130, 0.98);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.site-header__pill--scrolled .nav-flyout-link {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.site-header__pill--scrolled .nav-flyout-link:hover,
+.site-header__pill--scrolled .nav-flyout-link:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+}
+
+/* Mobile nested groups: centered label, chevron fixed on the right */
+.nav-mobile-group {
+    width: 100%;
+}
+
+.nav-mobile-group__row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 2.5rem;
+}
+
+.nav-mobile-group__row .nav-pill-link {
+    display: block;
+    width: 100%;
+    padding-left: 2.75rem;
+    padding-right: 2.75rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.nav-mobile-group__toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.nav-mobile-group__toggle i {
+    margin-left: 0;
+}
+
+.site-header__pill--scrolled .nav-mobile-group__toggle {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.nav-mobile-submenu {
+    list-style: none;
+    margin: 0.35rem 0 0.5rem;
+    padding: 0.35rem;
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.site-header__pill--scrolled .nav-mobile-submenu {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-mobile-submenu__link {
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+}
+
+.site-header .nav__toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    color: #1a202c;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header .nav__toggle:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* Scrolled: white toggle button */
+.site-header__pill--scrolled .nav__toggle {
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.site-header__pill--scrolled .nav__toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.site-header .nav__links {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Desktop: hide mobile menu */
+@media (min-width: 992px) {
+    .site-header .nav__links {
+        display: none !important;
+    }
+
+    /* Keep pill navigation in a single row on desktop */
+    .site-header .nav {
+        flex-wrap: nowrap;
+    }
+
+    .site-header .nav-pill {
+        flex-wrap: nowrap;
+    }
+
+    .site-header .nav-pill-link {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.82rem;
+    }
+
+    .site-header__pill--scrolled .nav-pill-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .site-header__pill--scrolled .nav__cta {
+        padding: 0.4rem 1rem;
+        font-size: 0.82rem;
+    }
+
+    .site-header__pill--scrolled .nav__brand-text {
+        font-size: 1.05rem;
+    }
+}
+
+/* Mobile: show toggle, hide desktop links */
+@media (max-width: 991px) {
+    body:has(.site-header) {
+        padding-top: 68px;
+    }
+
+    .site-header .nav-pill:not(.nav-pill--mobile) {
+        display: none;
+    }
+
+    .site-header .nav__cta {
+        display: none;
+    }
+
+    .site-header .nav__toggle {
+        display: inline-flex;
+        margin-left: auto;
+        position: relative;
+        z-index: 100;
+    }
+
+    .site-header .nav {
+        justify-content: space-between;
+    }
+
+    .site-header__pill {
+        overflow: visible;
+    }
+
+    .site-header .nav__links {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        z-index: 50;
+    }
+
+    .site-header .nav__links.collapse.show {
+        display: block;
+        max-height: calc(100dvh - 5.75rem - env(safe-area-inset-bottom, 0px));
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .site-header__pill--scrolled .nav__links.collapse.show {
+        background: rgba(44, 82, 130, 0.98);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .site-header__pill--scrolled .nav-pill--mobile .nav-pill-link {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .site-header .nav-pill--mobile {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .site-header .nav-pill--mobile > li {
+        width: 100%;
+    }
+
+    .site-header .nav-pill--mobile > li > .nav-pill-link {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-mobile-submenu {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-mobile-submenu .nav-pill-link {
+        text-align: center;
+        width: 100%;
+    }
+
+    .site-header .nav__brand-text {
+        font-size: 0.85rem;
+        max-width: 12ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 576px) {
+    body:has(.site-header) {
+        padding-top: 68px;
+    }
+}

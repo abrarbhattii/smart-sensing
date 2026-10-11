@@ -1,0 +1,182 @@
+/* Site-wide styles only. Component styles live next to each component (e.g. SiteHeader.css). */
+:root {
+    --font-sans: Cambria, 'Hoefler Text', Georgia, 'Times New Roman', Times, serif;
+    --primary-color: #2c5282;
+    --secondary-color: #38a169;
+    --accent-color: #ed8936;
+    --dark-color: #1a202c;
+    --light-gray: #f7fafc;
+    --success-color: #48bb78;
+    --warning-color: #ed8936;
+    --info-color: #4299e1;
+    --header-height: 72px;
+    --section-padding-y: clamp(28px, 4vw, 48px);
+    --section-title-margin: clamp(20px, 3vw, 32px);
+}
+
+/* Scroll behavior: sections appear fully when navigated to */
+html {
+    scroll-padding-top: var(--header-height);
+}
+
+section,
+#home,
+#recent-work,
+#collaborators,
+#about,
+#what-we-do,
+#team,
+#tutorials,
+#labs,
+#lectures,
+#data {
+    scroll-margin-top: var(--header-height);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: #333;
+    padding-top: 80px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    border: none;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.btn-primary:hover {
+    background: #111110;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
+}
+
+@media (max-width: 991px) {
+    :root {
+        --header-height: 68px;
+    }
+
+    body {
+        padding-top: 70px;
+    }
+
+    .section {
+        padding: var(--section-padding-y) 0;
+    }
+
+    .btn-primary {
+        padding: 10px 24px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --header-height: 64px;
+        --section-padding-y: clamp(24px, 5vw, 32px);
+        --section-title-margin: clamp(16px, 4vw, 24px);
+    }
+
+    body {
+        padding-top: 70px;
+    }
+
+    .section {
+        padding: var(--section-padding-y) 0;
+    }
+}
+
+/* Section spacing — relative to viewport */
+.section {
+    padding: var(--section-padding-y) 0;
+}
+
+/* Tighter spacing between card rows */
+.section .row > .mb-4 {
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem) !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 36px 0;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Focus States for Accessibility */
+.btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+@media print {
+    .section {
+        padding: 20px 0;
+    }
+}
