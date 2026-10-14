@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════ */
 /* Body padding when using floating navbar */
 body:has(.site-header) {
-    padding-top: 72px;
+    padding-top: 3.6rem;
 }
 
 .site-header {
@@ -13,14 +13,34 @@ body:has(.site-header) {
     left: 0;
     right: 0;
     z-index: 1030;
-    padding: 0.75rem 1rem 0;
-    background: transparent !important;
+    box-sizing: border-box;
+    min-height: 3.6rem;
+    padding: 0.7rem 12px;
+    background: linear-gradient(
+        135deg,
+        rgba(232, 240, 248, 0.97) 0%,
+        rgba(232, 245, 238, 0.97) 100%
+    ) !important;
     border: none !important;
     box-shadow: none !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     pointer-events: none;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     overflow: visible;
+    transition: background 0.35s ease, padding 0.35s ease, min-height 0.35s ease;
+}
+
+/* Scrolled: clear bar so the floating pill can take over */
+.site-header:has(.site-header__pill--scrolled) {
+    min-height: 0;
+    padding: 0.55rem 8px 0;
+    align-items: flex-start;
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .site-header > * {
@@ -30,29 +50,35 @@ body:has(.site-header) {
 .site-header__pill {
     position: relative;
     width: 100%;
-    max-width: min(94vw, 78rem);
-    min-height: 3.5rem;
+    max-width: none;
+    min-height: 0;
+    height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 1.25rem;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0 12px;
+    margin: 0;
     border-radius: 0;
     background: transparent !important;
     border: none;
     box-shadow: none;
-    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, max-width 0.4s ease-in-out, padding 0.4s ease-in-out;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, max-width 0.4s ease-in-out, padding 0.4s ease-in-out, margin 0.4s ease-in-out, border-radius 0.4s ease-in-out;
 }
 
-/* Keep scrolled pill wide enough for 6 links + Explore (was 52rem — too narrow) */
+/* Scrolled: centered floating pill (navbar shrink/gradient unchanged) */
 .site-header__pill--scrolled {
     border-radius: 9999px;
     max-width: min(80vw, 60rem);
+    height: auto;
+    min-height: 0;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0.45rem 1rem;
     background: linear-gradient(135deg, rgba(44, 82, 130, 0.92), rgba(56, 161, 105, 0.92)) !important;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, max-width 0.4s ease-in-out, padding 0.4s ease-in-out;
 }
 
 .site-header .nav {
@@ -61,6 +87,9 @@ body:has(.site-header) {
     justify-content: space-between;
     gap: 1rem;
     width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
     flex-wrap: nowrap;
 }
 
@@ -75,13 +104,13 @@ body:has(.site-header) {
 }
 
 .site-header .nav__brand {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
     font-weight: 600;
-    font-size: 1.3rem;
-    line-height: calc(2/1.5);
-    letter-spacing: 0.05em;
+    font-size: 1.15rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
     color: #1a202c !important;
     text-decoration: none;
     transition: opacity 0.2s ease, color 0.3s ease;
@@ -97,16 +126,29 @@ body:has(.site-header) {
 }
 
 .nav__brand-img {
+    display: block;
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
     border-radius: 50%;
     background-color: white;
+    flex-shrink: 0;
+}
+
+.site-header .nav__brand-text {
+    display: inline-block;
+    line-height: 1;
+    padding-top: 0.05em;
 }
 
 .site-header .nav-pill-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
     border-radius: 9999px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    line-height: 1;
     color: #1a202c;
     text-decoration: none;
     white-space: nowrap;
@@ -202,7 +244,7 @@ body:has(.site-header) {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-0.35rem);
     min-width: 12.5rem;
     margin: 0;
     padding: 0.45rem 5px 5px;
@@ -214,7 +256,7 @@ body:has(.site-header) {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.15s ease, visibility 0.15s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
     z-index: 200;
 }
 
@@ -240,12 +282,20 @@ body:has(.site-header) {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
     transition-delay: 0s;
 }
 
 /* Brief delay only on close so the cursor can cross into the submenu */
 .nav-item-has-flyout:not(:hover):not(:has(:focus-visible)) .nav-flyout {
-    transition-delay: 0.08s;
+    transition-delay: 0.1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-flyout {
+        transition: none;
+        transform: translateX(-50%);
+    }
 }
 
 .nav-flyout-link {
@@ -335,10 +385,27 @@ body:has(.site-header) {
 
 .nav-mobile-submenu {
     list-style: none;
-    margin: 0.35rem 0 0.5rem;
-    padding: 0.35rem;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
     border-radius: 0.75rem;
     background: rgba(0, 0, 0, 0.04);
+    transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.2s ease, padding 0.2s ease;
+}
+
+.nav-mobile-submenu--open {
+    margin: 0.35rem 0 0.5rem;
+    padding: 0.35rem;
+    max-height: 20rem;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-mobile-submenu {
+        transition: none;
+    }
 }
 
 .site-header__pill--scrolled .nav-mobile-submenu {
@@ -381,6 +448,7 @@ body:has(.site-header) {
 .site-header .nav__links {
     width: 100%;
     margin-top: 0.5rem;
+    display: none;
 }
 
 /* Desktop: hide mobile menu */
@@ -421,7 +489,7 @@ body:has(.site-header) {
 /* Mobile: show toggle, hide desktop links */
 @media (max-width: 991px) {
     body:has(.site-header) {
-        padding-top: 68px;
+        padding-top: 3.6rem;
     }
 
     .site-header .nav-pill:not(.nav-pill--mobile) {
@@ -448,20 +516,29 @@ body:has(.site-header) {
     }
 
     .site-header .nav__links {
+        display: block;
         position: absolute;
         top: calc(100% + 8px);
         left: 0;
         right: 0;
         z-index: 50;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-0.4rem);
+        pointer-events: none;
+        transition: max-height 0.28s ease, opacity 0.22s ease, transform 0.22s ease;
     }
 
-    .site-header .nav__links.collapse.show {
-        display: block;
+    .site-header .nav__links--open {
         max-height: calc(100dvh - 5.75rem - env(safe-area-inset-bottom, 0px));
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(12px);
         border-radius: 1rem;
@@ -469,9 +546,15 @@ body:has(.site-header) {
         border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .site-header__pill--scrolled .nav__links.collapse.show {
+    .site-header__pill--scrolled .nav__links--open {
         background: rgba(44, 82, 130, 0.98);
         border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .site-header .nav__links {
+            transition: none;
+        }
     }
 
     .site-header__pill--scrolled .nav-pill--mobile .nav-pill-link {
@@ -517,6 +600,6 @@ body:has(.site-header) {
 
 @media (max-width: 576px) {
     body:has(.site-header) {
-        padding-top: 68px;
+        padding-top: 3.5rem;
     }
 }

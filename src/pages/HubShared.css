@@ -1,53 +1,226 @@
 .hub-entry-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.25rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.75rem;
 }
 
 .hub-entry-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    min-height: 22.5rem;
+    height: 100%;
+    padding: 1.65rem 1.6rem 1.35rem;
     background: #fff;
     border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.35rem 1.4rem;
+    border-radius: 0.75rem;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    height: 100%;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    transition:
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.hub-entry-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(44, 82, 130, 0.12);
+.hub-entry-card:hover,
+.hub-entry-card:focus-visible {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 44px rgba(44, 82, 130, 0.14);
+    border-color: rgba(44, 82, 130, 0.28);
     color: inherit;
+}
+
+.hub-entry-card:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 3px;
+}
+
+.hub-entry-card__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.35rem;
 }
 
 .hub-entry-card__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, rgba(44, 82, 130, 0.12), rgba(56, 161, 105, 0.12));
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: rgba(44, 82, 130, 0.1);
     color: var(--primary-color);
-    margin-bottom: 0.85rem;
-}
-
-.hub-entry-card h3 {
     font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--dark-color);
-    margin: 0 0 0.5rem;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
-.hub-entry-card p {
+.hub-entry-card:hover .hub-entry-card__icon,
+.hub-entry-card:focus-visible .hub-entry-card__icon {
+    transform: scale(1.06);
+    background: rgba(56, 161, 105, 0.14);
+    color: var(--secondary-color);
+}
+
+.hub-entry-card__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.65rem;
+    border: 1px solid rgba(44, 82, 130, 0.35);
+    border-radius: 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.hub-entry-card__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark-color);
+    transition: color 0.25s ease;
+}
+
+.hub-entry-card:hover .hub-entry-card__title,
+.hub-entry-card:focus-visible .hub-entry-card__title {
+    color: var(--primary-color);
+}
+
+.hub-entry-card__subtitle {
     margin: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: #64748b;
+}
+
+.hub-entry-card__accent {
+    display: block;
+    width: 2.75rem;
+    height: 3px;
+    margin: 0.95rem 0 1.1rem;
+    border-radius: 999px;
+    background: var(--primary-color);
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.hub-entry-card:hover .hub-entry-card__accent,
+.hub-entry-card:focus-visible .hub-entry-card__accent {
+    width: 4rem;
+    background: var(--secondary-color);
+}
+
+.hub-entry-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.hub-entry-card__list li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #334155;
+}
+
+.hub-entry-card__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--primary-color);
+}
+
+.hub-entry-card__desc {
+    margin: 0;
+    flex: 1;
     font-size: 0.95rem;
     line-height: 1.55;
+    color: #475569;
+}
+
+.hub-entry-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.35rem;
+    padding-top: 1.05rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.hub-entry-card__cta {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: color 0.25s ease;
+}
+
+.hub-entry-card:hover .hub-entry-card__cta,
+.hub-entry-card:focus-visible .hub-entry-card__cta {
+    color: var(--secondary-color);
+}
+
+.hub-entry-card__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 999px;
+    background: rgba(44, 82, 130, 0.1);
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.hub-entry-card:hover .hub-entry-card__arrow,
+.hub-entry-card:focus-visible .hub-entry-card__arrow {
+    transform: translateX(3px);
+    background: var(--primary-color);
+    color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hub-entry-card,
+    .hub-entry-card__icon,
+    .hub-entry-card__title,
+    .hub-entry-card__accent,
+    .hub-entry-card__cta,
+    .hub-entry-card__arrow,
+    .hub-media-card,
+    .hub-media-card__photo img {
+        transition: none;
+    }
+
+    .hub-entry-card:hover,
+    .hub-entry-card:focus-visible,
+    .hub-media-card:hover {
+        transform: none;
+    }
+
+    .hub-entry-card:hover .hub-entry-card__icon,
+    .hub-entry-card:focus-visible .hub-entry-card__icon,
+    .hub-entry-card:hover .hub-entry-card__arrow,
+    .hub-entry-card:focus-visible .hub-entry-card__arrow,
+    .hub-media-card:hover .hub-media-card__photo img {
+        transform: none;
+    }
 }
 
 .hub-fact-list {

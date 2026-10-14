@@ -29,7 +29,7 @@ export function AcademyResourcePage() {
       <main>
         <section className="section">
           <div className="container">
-            <BackLink to={`/Academy#${sectionId}`} label={`Back to ${section.title}`} title={`Back to ${section.title}`}/>
+            <BackLink to={`/Academy/${sectionId}`} label={`Back to ${section.title}`} title={`Back to ${section.title}`}/>
             <div className="detail-page__hero">
               <div>
                 <SectionTitle title={item.title} subtitle={section.title}/>

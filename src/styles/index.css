@@ -9,7 +9,7 @@
     --success-color: #48bb78;
     --warning-color: #ed8936;
     --info-color: #4299e1;
-    --header-height: 72px;
+    --header-height: 3.6rem;
     --section-padding-y: clamp(28px, 4vw, 48px);
     --section-title-margin: clamp(20px, 3vw, 32px);
 }
@@ -69,11 +69,11 @@ a {
 
 @media (max-width: 991px) {
     :root {
-        --header-height: 68px;
+        --header-height: 3.6rem;
     }
 
     body {
-        padding-top: 70px;
+        padding-top: 3.6rem;
     }
 
     .section {
@@ -88,13 +88,13 @@ a {
 
 @media (max-width: 576px) {
     :root {
-        --header-height: 64px;
+        --header-height: 3.5rem;
         --section-padding-y: clamp(24px, 5vw, 32px);
         --section-title-margin: clamp(16px, 4vw, 24px);
     }
 
     body {
-        padding-top: 70px;
+        padding-top: 3.5rem;
     }
 
     .section {

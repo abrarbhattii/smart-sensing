@@ -110,14 +110,13 @@
   gap: 10px;
   font-weight: 900;
   background: #ffffff00;
-  /* background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); */
-  /* color: green; */
   padding: 0px 10px;
-  border: 0PX;
-  border-radius: 20PX;
+  border: 0;
+  border-radius: 20px;
   color: #ffffff;
   cursor: pointer;
   user-select: none;
+  text-decoration: none;
 }
 
 .news-bulletin__item:hover {

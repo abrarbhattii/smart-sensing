@@ -57,24 +57,43 @@ async function home(client) {
             location: c.location || '',
             url: c.url || '',
             logo: c.logo_url || '',
+            summary: c.summary || '',
+            details: c.details || '',
         })),
     };
 }
 
+async function hero(client) {
+    // Table added by supabase/07_home_and_events.sql
+    const list = await rows(published(client, 'hero_slides')).catch(() => []);
+    return list.map((s) => ({
+        id: s.id,
+        title: s.title || '',
+        image: s.image_url || '',
+        caption: s.caption || '',
+    }));
+}
+
 async function events(client) {
-    const list = await rows(published(client, 'events', '*, event_highlights(text, sort_order), event_tags(tag, sort_order)'));
+    const rich = '*, event_highlights(text, sort_order), event_tags(tag, sort_order), event_images(image_url, caption, sort_order)';
+    const base = '*, event_highlights(text, sort_order), event_tags(tag, sort_order)';
+    const list = await rows(published(client, 'events', rich)).catch(() => rows(published(client, 'events', base)));
     return list.map((e) => ({
         id: e.id,
+        slug: e.slug || e.id,
         title: e.title,
         date: e.date || '',
         time: e.time || '',
         location: e.location || '',
         organizer: e.organizer || '',
         type: e.type || '',
+        societyGroupId: e.society_group_id || '',
         summary: e.summary || '',
         details: e.details || '',
+        image: e.image_url || '',
         highlights: values(e.event_highlights, 'text'),
         tags: values(e.event_tags, 'tag'),
+        images: sorted(e.event_images).map(({ image_url, caption }) => ({ src: image_url, caption: caption || '' })),
     }));
 }
 
@@ -251,39 +270,17 @@ async function whoWeAre(client) {
 }
 
 async function society(client) {
-    const rich = '*, society_event_items(*, society_event_item_highlights(text, sort_order), society_event_item_sections(heading, body, image_url, sort_order))';
-    const mid = '*, society_event_items(*, society_event_item_highlights(text, sort_order))';
     const [introRow, groups] = await Promise.all([
         intro(client, 'society_intro'),
-        rows(published(client, 'society_event_groups', rich))
-            .catch(() => rows(published(client, 'society_event_groups', mid)))
-            .catch(() => rows(published(client, 'society_event_groups', '*, society_event_items(*)'))),
+        rows(published(client, 'society_event_groups')),
     ]);
     return {
         intro: mapIntro(introRow),
+        // Categories only — event cards come from `events` via society_group_id / type.
         groups: groups.map((g) => ({
             id: g.id,
             title: g.title,
             icon: g.icon || '',
-            items: sorted(g.society_event_items)
-                .filter((i) => i.published)
-                .map((i) => ({
-                    id: i.id,
-                    slug: i.slug || i.id,
-                    title: i.title,
-                    date: i.date || '',
-                    time: i.time || '',
-                    location: i.location || '',
-                    organizer: i.organizer || '',
-                    summary: i.summary || '',
-                    details: i.details || '',
-                    image: i.image_url || '',
-                    video: i.video_url || '',
-                    link: i.link_url || '',
-                    linkLabel: i.link_label || '',
-                    highlights: values(i.society_event_item_highlights, 'text'),
-                    sections: mapContentSections(i.society_event_item_sections),
-                })),
         })),
     };
 }
@@ -378,7 +375,7 @@ async function sawaid(client) {
     };
 }
 
-export const fetchers = { home, events, team, research, projects, labHub, appsTools, whoWeAre, society, academy, sawaid };
+export const fetchers = { home, hero, events, team, research, projects, labHub, appsTools, whoWeAre, society, academy, sawaid };
 
 export const CONTENT_KEYS = Object.keys(fetchers);
 

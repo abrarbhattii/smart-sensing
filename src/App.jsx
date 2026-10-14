@@ -12,11 +12,13 @@ const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ de
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((m) => ({ default: m.ProjectsPage })));
 const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage').then((m) => ({ default: m.ProjectDetailPage })));
 const SocietyHubPage = lazy(() => import('./pages/SocietyHubPage').then((m) => ({ default: m.SocietyHubPage })));
-const SocietyItemPage = lazy(() => import('./pages/SocietyItemPage').then((m) => ({ default: m.SocietyItemPage })));
 const AcademyPage = lazy(() => import('./pages/AcademyPage').then((m) => ({ default: m.AcademyPage })));
+const AcademySectionPage = lazy(() => import('./pages/AcademySectionPage').then((m) => ({ default: m.AcademySectionPage })));
 const AcademyResourcePage = lazy(() => import('./pages/AcademyResourcePage').then((m) => ({ default: m.AcademyResourcePage })));
 const TeamPage = lazy(() => import('./pages/TeamPage').then((m) => ({ default: m.TeamPage })));
 const NewsEventsPage = lazy(() => import('./pages/NewsEventsPage').then((m) => ({ default: m.NewsEventsPage })));
+const EventDetailPage = lazy(() => import('./pages/EventDetailPage').then((m) => ({ default: m.EventDetailPage })));
+const SocietyGroupPage = lazy(() => import('./pages/SocietyGroupPage').then((m) => ({ default: m.SocietyGroupPage })));
 const PublicationTopicPage = lazy(() => import('./pages/PublicationTopicPage').then((m) => ({ default: m.PublicationTopicPage })));
 const SawaidAbbasPage = lazy(() => import('./pages/SawaidAbbasPage').then((m) => ({ default: m.SawaidAbbasPage })));
 const SawaidAbbasFingerprintsPage = lazy(() => import('./pages/SawaidAbbasFingerprintsPage').then((m) => ({ default: m.SawaidAbbasFingerprintsPage })));
@@ -38,6 +40,11 @@ function page(element) {
 function ResearchSlugRedirect() {
   const { slug } = useParams();
   return <Navigate to={`/Lab/Research/${slug}`} replace/>;
+}
+
+function SocietyEventsSlugRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/Society/Events/${encodeURIComponent(slug)}`} replace/>;
 }
 
 function App() {
@@ -68,12 +75,15 @@ function App() {
         <Route element={<MainLayout activeRoute="society"/>}>
           <Route path="/Society" element={page(<SocietyHubPage />)}/>
           <Route path="/Society/Events" element={page(<NewsEventsPage />)}/>
-          <Route path="/Society/:groupId/:slug" element={page(<SocietyItemPage />)}/>
+          <Route path="/Society/Events/:slug" element={page(<EventDetailPage />)}/>
+          <Route path="/Society/:groupId/:slug" element={<SocietyEventsSlugRedirect />}/>
+          <Route path="/Society/:groupId" element={page(<SocietyGroupPage />)}/>
         </Route>
 
         <Route element={<MainLayout activeRoute="academy"/>}>
           <Route path="/Academy" element={page(<AcademyPage />)}/>
           <Route path="/Academy/:sectionId/:slug" element={page(<AcademyResourcePage />)}/>
+          <Route path="/Academy/:sectionId" element={page(<AcademySectionPage />)}/>
         </Route>
 
         <Route element={<MainLayout activeRoute="people"/>}>

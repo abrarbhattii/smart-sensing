@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { SectionTitle } from '../components/SectionTitle';
 import { KeyAreasNetwork } from '../components/KeyAreasNetwork';
+import { HubEntryCard } from '../components/HubEntryCard';
 import { useContent } from '../content/useContent';
 import './HubShared.css';
 import './WhoWeArePage.css';
@@ -18,13 +18,7 @@ export function WhoWeArePage() {
 
             <div className="hub-entry-grid">
               {whoWeArePillars.map((pillar) => (
-                <Link key={pillar.id || pillar.title} to={pillar.to} className="hub-entry-card">
-                  <div className="hub-entry-card__icon" aria-hidden="true">
-                    <i className={pillar.icon}/>
-                  </div>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.description}</p>
-                </Link>
+                <HubEntryCard key={pillar.id || pillar.title} entry={pillar}/>
               ))}
             </div>
           </div>
@@ -78,7 +72,7 @@ export function WhoWeArePage() {
               <SectionTitle title="Important information" subtitle="Affiliation, focus, and contact"/>
               <ul className="hub-fact-list">
                 {whoWeAreFacts.map((fact) => (
-                  <li key={fact.id || fact.label}>
+                  <li key={fact.label}>
                     <strong>{fact.label}</strong>
                     <span>{fact.value}</span>
                   </li>

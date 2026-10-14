@@ -23,7 +23,7 @@ if (!url || !key) {
 }
 
 const TABLES = [
-    'recent_work', 'recent_work_tags', 'collaborators',
+    'recent_work', 'recent_work_tags', 'collaborators', 'hero_slides',
     'who_we_are_intro', 'who_we_are_pillars', 'who_we_are_facts',
     'key_area_pillars', 'key_area_nodes', 'key_area_node_tags', 'key_area_node_pillars',
     'team_members', 'team_bios', 'team_bio_publications', 'team_bio_chapters', 'team_bio_awards',
@@ -34,9 +34,8 @@ const TABLES = [
     'publications', 'publication_keywords', 'projects', 'project_badges',
     'project_images', 'project_highlights',
     'apps_tools_intro', 'apps_tools', 'apps_tool_tags',
-    'society_intro', 'society_event_groups', 'society_event_items', 'society_event_item_highlights',
-    'society_event_item_sections',
-    'events', 'event_highlights', 'event_tags',
+    'society_intro', 'society_event_groups',
+    'events', 'event_highlights', 'event_tags', 'event_images',
     'academy_intro', 'academy_sections', 'academy_items', 'academy_item_points', 'academy_item_files',
     'academy_item_sections',
 ];

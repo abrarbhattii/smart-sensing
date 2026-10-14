@@ -13,6 +13,7 @@ const EMPTY_INTRO = { title: '', subtitle: '', summary: '' };
 
 const EMPTY_CONTENT = {
     home: { recentWork: [], collaborators: [] },
+    hero: [],
     events: [],
     team: { members: [], bios: {} },
     research: { areas: [] },
@@ -43,14 +44,14 @@ const SNAPSHOT_TIME = snapshot.generatedAt ? Date.parse(snapshot.generatedAt) : 
 
 // Content each route needs, so hovering a nav link can warm the cache.
 const ROUTE_CONTENT = [
-    ['/Home', ['home', 'events']],
+    ['/Home', ['home', 'hero', 'events']],
     ['/Who-We-Are', ['whoWeAre']],
     ['/Lab/Research', ['research']],
     ['/Lab/Apps-Tools', ['appsTools']],
     ['/Lab/Projects', ['projects']],
     ['/Lab', ['labHub']],
-    ['/Society/Events', ['events']],
-    ['/Society', ['society']],
+    ['/Society/Events', ['events', 'society']],
+    ['/Society', ['society', 'events']],
     ['/Academy', ['academy']],
     ['/People/sawaid-abbas', ['team', 'sawaid']],
     ['/People', ['team']],

@@ -14,8 +14,10 @@ import { ResearchPage } from './ResearchPage';
 import { ProjectsPage } from './ProjectsPage';
 import { ProjectDetailPage } from './ProjectDetailPage';
 import { SocietyHubPage } from './SocietyHubPage';
-import { SocietyItemPage } from './SocietyItemPage';
+import { SocietyGroupPage } from './SocietyGroupPage';
+import { EventDetailPage } from './EventDetailPage';
 import { AcademyPage } from './AcademyPage';
+import { AcademySectionPage } from './AcademySectionPage';
 import { AcademyResourcePage } from './AcademyResourcePage';
 import { TeamPage } from './TeamPage';
 import { NewsEventsPage } from './NewsEventsPage';
@@ -106,6 +108,12 @@ describe('pages render without crashing', () => {
         expect(el.textContent).toContain(project.title);
     });
 
+    it('renders an academy section listing page', () => {
+        const section = snapshot.data.academy.sections.find((s) => s.id === 'tutorials');
+        const el = renderAt('/Academy/tutorials', <AcademySectionPage />, '/Academy/:sectionId');
+        expect(el.textContent).toContain(section.title);
+    });
+
     it('renders an academy tutorial detail page', () => {
         const section = snapshot.data.academy.sections.find((s) => s.id === 'tutorials');
         const item = section.items[0];
@@ -113,11 +121,16 @@ describe('pages render without crashing', () => {
         expect(el.textContent).toContain(item.title);
     });
 
-    it('renders a society item detail page', () => {
+    it('renders a society category listing page', () => {
         const group = snapshot.data.society.groups[0];
-        const item = group.items[0];
-        const el = renderAt(`/Society/${group.id}/${item.id}`, <SocietyItemPage />, '/Society/:groupId/:slug');
-        expect(el.textContent).toContain(item.title);
+        const el = renderAt(`/Society/${group.id}`, <SocietyGroupPage />, '/Society/:groupId');
+        expect(el.textContent).toContain(group.title);
+    });
+
+    it('renders an event detail page from news & events', () => {
+        const event = snapshot.data.events[0];
+        const el = renderAt(`/Society/Events/${event.slug || event.id}`, <EventDetailPage />, '/Society/Events/:slug');
+        expect(el.textContent).toContain(event.title);
     });
 
     it('shows not found for spatial-data academy detail route', () => {

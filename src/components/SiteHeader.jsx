@@ -84,17 +84,15 @@ function MobileNavItem({ item, activeRoute, onNavigate, openKey, setOpenKey }) {
             <i className={`fas fa-chevron-${isOpen ? 'up' : 'down'}`} aria-hidden="true"/>
           </button>
         </div>
-        {isOpen ? (
-          <ul className="nav-mobile-submenu" id={panelId}>
-            {item.children.map((child) => (
-              <li key={child.to}>
-                <NavLink to={child.to} className="nav-pill-link nav-mobile-submenu__link" onNavigate={onNavigate}>
-                  {child.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        <ul className={`nav-mobile-submenu${isOpen ? ' nav-mobile-submenu--open' : ''}`} id={panelId} hidden={!isOpen}>
+          {item.children.map((child) => (
+            <li key={child.to}>
+              <NavLink to={child.to} className="nav-pill-link nav-mobile-submenu__link" onNavigate={onNavigate}>
+                {child.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </li>
     );
 }
@@ -131,7 +129,7 @@ export function SiteHeader({ activeRoute = '' }) {
 
           <nav className="nav nav--pill" aria-label="Main navigation">
             <Link className="nav__brand" to="/Home">
-              <img src={logo} alt="Smart Sensing Lab Logo" height={36} className="nav__brand-img"/>
+              <img src={logo} alt="Smart Sensing Lab Logo" height={30} width={30} className="nav__brand-img"/>
               <span className="nav__brand-text">Smart Sensing</span>
             </Link>
 
@@ -141,16 +139,12 @@ export function SiteHeader({ activeRoute = '' }) {
               ))}
             </ul>
 
-            <Link to="/Lab" className={`nav__cta ${activeRoute === 'lab' ? 'nav-active' : ''}`} title="Explore Our Work">
-              Explore
-            </Link>
-
             <button className="nav__toggle" type="button" aria-controls="navbarNav" aria-expanded={menuOpen} aria-label="Toggle navigation" onClick={() => setMenuOpen((open) => !open)}>
               <i className={`fas ${menuOpen ? 'fa-times' : 'fa-bars'}`}/>
             </button>
           </nav>
 
-          <div className={`nav__links collapse${menuOpen ? ' show' : ''}`} id="navbarNav">
+          <div className={`nav__links${menuOpen ? ' nav__links--open' : ''}`} id="navbarNav">
             <ul className="nav-pill nav-pill--mobile">
               {PRIMARY_NAV.map((item) => (
                 <MobileNavItem
@@ -162,11 +156,6 @@ export function SiteHeader({ activeRoute = '' }) {
                   setOpenKey={setMobileOpenKey}
                 />
               ))}
-              <li>
-                <Link className={`nav-pill-link nav-pill-link--cta ${activeRoute === 'lab' ? 'nav-active' : ''}`} to="/Lab" onClick={closeMenu}>
-                  Explore
-                </Link>
-              </li>
             </ul>
           </div>
 
